@@ -8,7 +8,7 @@ const CaptainLogin = () => {
   {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [userData, setUserData] = useState({});
+  const [captainData, setCaptainData] = useState({});
 
   const emailHandler = (e) => {
     setEmail(e.target.value);
@@ -18,7 +18,7 @@ const CaptainLogin = () => {
   };
   const formHandler = (e) => {
     e.preventDefault();
-    setUserData({
+    setCaptainData({
       email: email,
       password: password,
     });
