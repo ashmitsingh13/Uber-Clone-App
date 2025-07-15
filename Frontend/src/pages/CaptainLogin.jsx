@@ -64,7 +64,7 @@ const CaptainLogin = () => {
         </form>
         <p className="text-center mt-4">
           New here?&nbsp;
-          <Link to="/users/signup" className="text-blue-600 ">
+          <Link to="/captains/signup" className="text-blue-600 ">
             Create New Account
           </Link>
         </p>

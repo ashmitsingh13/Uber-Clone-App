@@ -32,7 +32,6 @@ const UserSignup = () =>  {
         lastName:lastName,
       }
     });
-    console.log(userData);
     setEmail("");
     setPassword("");
     setFirstName("");
