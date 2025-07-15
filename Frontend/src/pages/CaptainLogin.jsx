@@ -16,7 +16,7 @@ const CaptainLogin = () => {
   const passwordHandler = (e) => {
     setPassword(e.target.value);
   };
-  const formHandler = (e) => {
+  const submitHandler = (e) => {
     e.preventDefault();
     setCaptainData({
       email: email,
@@ -34,14 +34,14 @@ const CaptainLogin = () => {
           src="/images/Uber-Logo.png"
           alt="Uber Logo"
         />
-        <form action="/users/login" method="POST" onSubmit={formHandler}>
+        <form action="/users/login" method="POST" onSubmit={submitHandler}>
           <h3 className="text-lg font-medium mb-2">What's Your Email</h3>
           <input
             required
             type="email"
             name="email"
             placeholder="Enter Your Email"
-            className="bg-[#eeeeee] rounded mb-7 px-4 py-2 border w-full text-lg placeholder:text-base"
+            className="bg-[#eeeeee] rounded mb-7 px-4 py-2 outline-none w-full text-lg placeholder:text-base"
             value={email}
             onChange={emailHandler}
           />
@@ -51,7 +51,7 @@ const CaptainLogin = () => {
             name="password"
             placeholder="Enter Password"
             id=""
-            className="bg-[#eeeeee] rounded px-4 py-2 border w-full text-lg placeholder:text-base mb-7"
+            className="bg-[#eeeeee] rounded px-4 py-2 outline-none w-full text-lg placeholder:text-base mb-7"
             value={password}
             onChange={passwordHandler}
           />
