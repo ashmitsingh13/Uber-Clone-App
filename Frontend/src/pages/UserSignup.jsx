@@ -1,14 +1,20 @@
-import React from 'react'
+'use client'
+import React, { useContext } from 'react'
 import { useState } from 'react';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from 'axios';
+import {UserDataContext} from "../contexts/userContext"
 
 const UserSignup = () =>  {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [userData, setUserData] = useState({});
 
+  const navigate = useNavigate();
+
+  const {user, setUser} = React.useContext(UserDataContext);
+  
   const emailHandler = (e) => {
     setEmail(e.target.value);
   };
@@ -22,16 +28,25 @@ const UserSignup = () =>  {
     setLastName(e.target.value);
   };
 
-  const submitHandler = (e) => {
+  const submitHandler = async(e) => {
     e.preventDefault();
-    setUserData({
+    const newUser ={
       email: email,
       password: password,
       fullname: {
-        firstName: firstName,
-        lastName:lastName,
+        firstname: firstName,
+        lastname:lastName,
       }
-    });
+    };
+
+    const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/users/register`, newUser)
+
+    if(response.status === 201){
+       const data = response.data; 
+       setUser(data.user);
+       localStorage.setItem('token', data.token)
+       navigate('/home');
+    }
     setEmail("");
     setPassword("");
     setFirstName("");
@@ -67,7 +82,6 @@ const UserSignup = () =>  {
             value={lastName}
             onChange={lastNameHandler}
           />
-
           </div>
           
           <h3 className="text-lg font-medium mb-2">What's Your Email</h3>
@@ -94,7 +108,7 @@ const UserSignup = () =>  {
             className="w-full mt-5 bg-black text-white py-2 px-4 rounded-md font-semibold"
             type="submit"
           >
-            Login
+            Create Account
           </button>
         </form>
         <p className="text-center mt-4">
