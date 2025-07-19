@@ -45,7 +45,7 @@ const UserSignup = () =>  {
        const data = response.data; 
        setUser(data.user);
        localStorage.setItem('token', data.token)
-       navigate('/home');
+       navigate('user/home');
     }
     setEmail("");
     setPassword("");
@@ -61,7 +61,7 @@ const UserSignup = () =>  {
           src="/images/Uber-Logo.png"
           alt="Uber Logo"
         />
-        <form action="/users/login" method="POST" onSubmit={submitHandler}>
+        <form action="/user/login" method="POST" onSubmit={submitHandler}>
           <h3 className="text-lg font-medium mb-2">What's Your Name</h3>
           <div className='flex gap-4 mb-6'>
             <input
@@ -113,7 +113,7 @@ const UserSignup = () =>  {
         </form>
         <p className="text-center mt-4">
           Already Have Account ?&nbsp;
-          <Link to="/users/login" className="text-blue-600 ">
+          <Link to="/user/login" className="text-blue-600 ">
             Login here
           </Link>
         </p>

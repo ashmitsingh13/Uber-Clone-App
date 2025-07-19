@@ -1,14 +1,17 @@
 import React from 'react'
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
+import axios from 'axios';
+import { CaptainDataContext } from '../contexts/CaptainContext';
 
 
 const CaptainLogin = () => {
   {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [captainData, setCaptainData] = useState({});
+  const {captain, setCaptain} = React.useContext(CaptainDataContext);
+  const navigate = useNavigate();
 
   const emailHandler = (e) => {
     setEmail(e.target.value);
@@ -16,12 +19,22 @@ const CaptainLogin = () => {
   const passwordHandler = (e) => {
     setPassword(e.target.value);
   };
-  const submitHandler = (e) => {
+  const submitHandler = async(e) => {
     e.preventDefault();
-    setCaptainData({
+    const captain = {
       email: email,
       password: password,
-    });
+    };
+
+    const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/captain/login`,captain);
+
+    if(response.status===200){
+      const data = response.data;
+
+      setCaptain(data.captain);
+      localStorage.setItem("token", data.token);
+      navigate("/captain/home")
+    }
     setEmail("");
     setPassword("");
   };
@@ -34,7 +47,7 @@ const CaptainLogin = () => {
           src="/images/Uber-Logo.png"
           alt="Uber Logo"
         />
-        <form action="/users/login" method="POST" onSubmit={submitHandler}>
+        <form action="/user/login" method="POST" onSubmit={submitHandler}>
           <h3 className="text-lg font-medium mb-2">What's Your Email</h3>
           <input
             required
@@ -64,13 +77,13 @@ const CaptainLogin = () => {
         </form>
         <p className="text-center mt-4">
           New here?&nbsp;
-          <Link to="/captains/signup" className="text-blue-600 ">
+          <Link to="/captain/signup" className="text-blue-600 ">
             Create New Account
           </Link>
         </p>
       </div>
       <div>
-        <Link to='/users/login' className=" flex items-center justify-center w-full mt-5 mb-5 bg-green-600 text-white py-2 px-4 rounded-md font-semibold">
+        <Link to='/user/login' className=" flex items-center justify-center w-full mt-5 mb-5 bg-green-600 text-white py-2 px-4 rounded-md font-semibold">
           <span><FaUser /></span>&nbsp;Login As User
         </Link>
       </div>

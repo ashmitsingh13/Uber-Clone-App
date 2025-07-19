@@ -27,13 +27,13 @@ const UserLogin = () => {
       password: password,
     };
 
-    const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/users/login`, userData);
+    const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/user/login`, userData);
 
     if(response.status=== 200){
       const data = response.data;
       setUser(data.user);
       localStorage.setItem('token', data.token)
-      navigate("/home")
+      navigate("/user/home")
     }
     setEmail("");
     setPassword("");
@@ -47,7 +47,7 @@ const UserLogin = () => {
           src="/images/Uber-Logo.png"
           alt="Uber Logo"
         />
-        <form action="/users/login" method="POST" onSubmit={submitHandler}>
+        <form action="/user/login" method="POST" onSubmit={submitHandler}>
           <h3 className="text-lg font-medium mb-2">What's Your Email</h3>
           <input
             required
@@ -77,13 +77,13 @@ const UserLogin = () => {
         </form>
         <p className="text-center mt-4">
           New here?&nbsp;
-          <Link to="/users/signup" className="text-blue-600 ">
+          <Link to="/user/signup" className="text-blue-600 ">
             Create New Account
           </Link>
         </p>
       </div>
       <div>
-        <Link to='/captains/login' className=" flex items-center justify-center w-full mt-5 mb-5 bg-red-600 text-white py-2 px-4 rounded-md font-semibold">
+        <Link to='/captain/login' className=" flex items-center justify-center w-full mt-5 mb-5 bg-red-600 text-white py-2 px-4 rounded-md font-semibold">
           <span><GiCaptainHatProfile /></span>&nbsp;Login As Captain
         </Link>
       </div>

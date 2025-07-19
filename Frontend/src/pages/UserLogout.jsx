@@ -13,7 +13,7 @@ export const UserLogout =()=>{
     }).then((response)=>{
         if(response.status === 200){
             localStorage.removeItem("token");
-            navigate('/users/login');
+            navigate('/user/login');
         }
     })
 
