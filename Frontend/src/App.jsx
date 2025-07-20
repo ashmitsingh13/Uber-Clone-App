@@ -8,7 +8,7 @@ import Start from "./pages/Start";
 import Home from "./pages/Home";
 import UserProtectedWrapper from "./pages/UserProtectedWrapper";
 import UserLogout from "./pages/UserLogout";
-import CapatainHome from "./pages/CapatainHome";
+import CapatainHome from "./pages/CaptainHome";
 import CaptainProtectWrapper from "./pages/CaptainProtectWrapper";
 const App = () => {
   return (
