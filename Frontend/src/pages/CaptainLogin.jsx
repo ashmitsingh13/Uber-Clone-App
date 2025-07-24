@@ -7,7 +7,6 @@ import { CaptainDataContext } from '../contexts/CaptainContext';
 
 
 const CaptainLogin = () => {
-  {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const {captain, setCaptain} = React.useContext(CaptainDataContext);
@@ -90,6 +89,6 @@ const CaptainLogin = () => {
     </div>
   );
 };
-}
+
 
 export default CaptainLogin
